@@ -1,9 +1,11 @@
-use std::io;
-use std::io::Error;
+use std::io::{Error, self};
 use crate::error::ErrorKind::IOError;
 
+#[derive(Debug)]
 pub enum ErrorKind {
-    IOError(io::Error)
+    IOError(io::Error),
+    InvalidMagicNumber,
+    InvalidVersion
 }
 
 impl From<io::Error> for ErrorKind {
