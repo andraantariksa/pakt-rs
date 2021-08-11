@@ -143,8 +143,8 @@ mod tests {
         use std::io::prelude::*;
 
         let mut encoder = Encoder::new();
-        encoder.add_file("tempeh.jpg", Box::new(File::open("assets/image/tempeh.jpg").unwrap()));
-        encoder.write(File::create("assets/output/encode.pakt").unwrap());
+        encoder.add_file("tempeh.jpg", Box::new(File::open("test/image/tempeh.jpg").unwrap()));
+        encoder.write(File::create("test/output/encode.pakt").unwrap());
     }
 
     #[test]
@@ -155,15 +155,15 @@ mod tests {
         use file_diff::diff;
 
         let mut encoder = Encoder::new();
-        encoder.add_file("tempeh.jpg", Box::new(File::open("assets/image/tempeh.jpg").unwrap()));
-        encoder.add_file("imperial.ogg", Box::new(File::open("assets/music/imperial.ogg").unwrap()));
-        encoder.write(File::create("assets/output/encode_and_read.pakt").unwrap());
+        encoder.add_file("tempeh.jpg", Box::new(File::open("test/image/tempeh.jpg").unwrap()));
+        encoder.add_file("imperial.ogg", Box::new(File::open("test/music/imperial.ogg").unwrap()));
+        encoder.write(File::create("test/output/encode_and_read.pakt").unwrap());
 
-        let mut decoder = Decoder::from(File::open("assets/output/encode_and_read.pakt").unwrap()).unwrap();
+        let mut decoder = Decoder::from(File::open("test/output/encode_and_read.pakt").unwrap()).unwrap();
         assert_eq!(decoder.total_files(), 2);
-        decoder.extract("tempeh.jpg", File::create("assets/output/tempeh.jpg").unwrap());
-        decoder.extract("imperial.ogg", File::create("assets/output/imperial.ogg").unwrap());
-        assert!(diff("assets/output/tempeh.jpg", "assets/image/tempeh.jpg"));
-        assert!(diff("assets/output/imperial.ogg", "assets/music/imperial.ogg"));
+        decoder.extract("tempeh.jpg", File::create("test/output/tempeh.jpg").unwrap());
+        decoder.extract("imperial.ogg", File::create("test/output/imperial.ogg").unwrap());
+        assert!(diff("test/output/tempeh.jpg", "test/image/tempeh.jpg"));
+        assert!(diff("test/output/imperial.ogg", "test/music/imperial.ogg"));
     }
 }

@@ -2,6 +2,10 @@
 name = "pakt"
 version = "0.1.0"
 edition = "2018"
+repository = "https://github.com/andraantariksa/pakt-rs"
+license = "MIT OR Apache-2.0"
+keywords = ["file", "archive", "uncompressed"]
+categories = ["filesystem", "compression"]
 
 [dependencies]
 
